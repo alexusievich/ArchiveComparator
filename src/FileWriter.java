@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.zip.DataFormatException;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 public class FileWriter {
@@ -52,15 +54,16 @@ public class FileWriter {
             Archive a1 = new Archive(zipOldFile);
             zipNewFile.close();
             zipOldFile.close();
-            Comparator archiveComparator = new Comparator(a, a1);
+            ArchiveComparator archiveComparator = new ArchiveComparator(a, a1);
             archiveComparator.compareFiles();
             this.stringHashMap = archiveComparator.getHashMap();
             this.writeToFile();
-
             System.out.println("File \"compareResult.txt\" created in project's directory.");
-        } catch (
-                IOException e) {
-
+        } catch (ZipException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

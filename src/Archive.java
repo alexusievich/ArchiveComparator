@@ -7,8 +7,8 @@ import java.util.zip.ZipFile;
 
 public class Archive {
 
-    private final List<FileConstructor> files;
-    private final int fileSize;
+    private List<FileConstructor> files;
+    private int fileSize;
 
 
     public Archive(ZipFile zipFile) throws IOException {

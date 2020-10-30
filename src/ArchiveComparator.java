@@ -1,12 +1,12 @@
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Comparator {
+public class ArchiveComparator {
     private final Archive firstArchive;
     private final Archive secondArchive;
 
 
-    Comparator(Archive oldArchive, Archive newArchive) {
+    ArchiveComparator(Archive oldArchive, Archive newArchive) {
         this.firstArchive = oldArchive;
         this.secondArchive = newArchive;
     }
