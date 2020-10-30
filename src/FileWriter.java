@@ -4,14 +4,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.zip.DataFormatException;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 public class FileWriter {
 
-    private final String firstArchiveName;
-    private final String secondArchiveName;
+    private String firstArchiveName;
+    private String secondArchiveName;
     private HashMap<String, String> stringHashMap;
 
 
@@ -59,12 +60,12 @@ public class FileWriter {
             this.stringHashMap = archiveComparator.getHashMap();
             this.writeToFile();
             System.out.println("File \"compareResult.txt\" created in project's directory.");
-        } catch (ZipException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Input-output operation error! Please try to choose correct files again!");
+            Frame frame = new Frame();
+            firstArchiveName = frame.getFirstFile().getName();
+            secondArchiveName = frame.getSecondFile().getName();
+            fileWrite(frame.getFirstFile(),frame.getSecondFile());
         }
     }
 
